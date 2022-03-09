@@ -1,0 +1,30 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../static/css/home.css"> -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}?{% now 'U' %}">
+    <title>Welcome to SaveText</title>
+</head>
+<body>
+    <div class="heading">
+        <h1 id="heading-text">This is Basic Home PAge</h1>
+    </div>
+    <div class="form-div">
+        <form method="post">
+            <div class="input-entry">
+                <input type="text" name="email" placeholder="example@gmail.com" />
+            </div>
+            <div class="input-entry">
+                <input type="password" name="password" placeholder="**********" />
+            </div>
+            <input type="submit" value="Login" />
+        </form>
+    </div>
+    <footer>
+        <h1>Baad mai bna lio</h1>
+    </footer>
+</body>
+</html>
