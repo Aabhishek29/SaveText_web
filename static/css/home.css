@@ -2,7 +2,90 @@
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
-.input-entry{
-    margin: 20px;
+
+#nav-bar{
+    background-color:#2498d6;
+    display: inline-flex;
+    width: 100%;
+    padding: 1%;
+}
+#nav-bar label{
+    font-size: 30px;
+    color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#nav-bar ul{
+    position: absolute;
+    left: 60%;
+    width: 60%;
+    padding: 0.5%;
+}
+#nav-bar li{
+    display: inline-flex;
+    list-style: none;
+    width: 20%;
+}
+#nav-bar li a{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+}
+#nav-bar li a:hover{
+    color: white;
+}
+
+
+#form-div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 50vw;
+    height: 60vh;
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: 9px 7px 7px black;
+    border-radius: 20px;
+}
+.form-header{
+    font-size: 30px;
+    margin-top: 4%;
+    margin-left: 4%;
+}
+.discription-para{
+    margin-left: 4%;
+    margin-top: 1%;
+    font-size: 14px;
+}
+.form-items{
+    margin-top: 2%;
+    margin-left: 4%;
+}
+.input-area{
+    margin-top: 1%;
+    margin-bottom: 3%;
+    font-size: 16px;
+    width: 20vw;
+    padding: 5px;
+}
+.forget-id-pass{
+    margin-left: 4%;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+#login-btn{
+    margin-top: 6%;
+    position: relative;
+    left: 45%;
+    color: white;
+    background-color:#228dd4;
+    font-size: 22px;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-left: 4%;
+    padding-right: 4%;
 }
