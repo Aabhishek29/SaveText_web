@@ -7,3 +7,7 @@ def home(request):
 
 def getUserLogin(request):
     return render(request,'textUtils.html')
+
+
+def RegistrationForm(request):
+    return render(request,'Registration.html')
