@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/home.css' %}?{% now 'U' %}">
-<!--    <link rel="stylesheet" href="../static/css/home.css">-->
+    <script src="{% static 'javascript/utils.js' %}?{% now 'U' %}" ></script>
     <title>Document</title>
 </head>
 <body>
@@ -20,18 +20,18 @@
             </ul>
         </div>
         <div id="form-div">
-            <form method="post" action="getUserLogin">
+            <form method="post" action="getUserLogin" name="login_form">
                  {% csrf_token %}
                 <header class="form-header">Login</header>
                 <p class="discription-para">Save your Text Files here </p>
                 <div class="form-items">
-                    <input type="text" placeholder="Student Id" name="username" class="input-area" required="true"/>  
+                    <input type="text" placeholder="Student Id" name="username" id="username" class="input-area" required="true"/>  
                     <br>         
-                    <input type="password" placeholder="Password" name="password" class="input-area" required="true"/>
+                    <input type="password" placeholder="Password" name="password" id="password" class="input-area" required="true"/>
                 </div>
                 <a class="forget-id-pass" href="#">Forget Id and Password</a>
                 <br>
-                <input type="submit" id="login-btn" name="Login" value="Login"/>
+                <input type="submit" id="login-btn" onclick="call()" name="Login" value="Login"/>
             </form>
         </div>
     </div>
