@@ -1,5 +1,6 @@
 import email
 from statistics import mode
+from turtle import Turtle
 from django.db import models
 
 # Create your models here.
@@ -25,4 +26,8 @@ class UserRegistration(models.Model):
     hint_question = models.CharField(
         max_length=30, blank=False, null=False,
         choices=hint_question_options,
+    )
+
+    hint_answer = models.CharField(
+        max_length=30,blank=True,null=True
     )

@@ -9,3 +9,9 @@ function call(){
         return false;
     return true;
 }
+
+
+function checkLoginInformation(){
+    var username = document.getElementById('username');
+    var password = document.getElementById('password');
+}
