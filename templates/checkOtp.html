@@ -22,20 +22,7 @@
             </ul>
     </div>
     <div style="margin:50px">
-        <!-- <h1>hello world</h1> -->
-        <form method="post" action="getUserInfoRegister">
-            {% csrf_token %}
-            <header style="font-size: 30px; font-weight: bold;">Student Login</header>
-            {{ form }}
-            {% if messages != "Successfully Login" or messages != "Successfully Done..."%}
-                    <ul class="messages">
-                    {% for message in messages %}
-                        <li style="color: red; position: relative; text-align:center; margin-bottom: 5px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                    </ul>
-                {% endif %}
-            <input type="submit" style="margin:50px"  id="login-btn2" name="Login" value="Register"/>
-        </form>
+        <h1>Please Enter OTP to Check</h1>
     </div>
     <footer class="page-footer font-small stylish-color-dark pt-4" style="background-color:  #4b4a49; color: #fff;">
         <footer class="page-footer font-small mdb-color lighten-3 pt-4" >
@@ -72,38 +59,5 @@
             <a href="https://www.geu.ac.in/"> Graphic Era University(GEU)</a>
         </div>
     </footer>
-    <script>
-      var otp_from_back="";
-      function ajax_send_otp(){
-         email = document.getElementsByTagName("email");
-         alert("we reach here")
-         console.log("hello")
-       $.post("/getUserInfoRegister",
-           {
-               "email":email.value,
-               "csrfmiddlewaretoken":"{{csrf_token}}"
-           },
-           function(data, status){
-               if(status=="success"){
-                   otp_from_back = data;
-                   document.getElementById("otp_div").style.display='block';
-                   }
-      }
-      );
-      }
-     function verify_otp(){
-         var user_otp=document.getElementById("otp").value;
-         if (user_otp==otp_from_back){
-             document.getElementById("verify_text_div").style.color="green";            
-             document.getElementById("verify_text_div").innerHTML="OTP Verified";
-             document.getElementById("otp_div").style.display="none";
-             document.getElementById("form_div").style.display="block";
-         }
-         else{
-             document.getElementById("verify_text_div").style.color="red";
-             document.getElementById("verify_text_div").innerHTML="Try Again!!";
-         }
-     } 
-  </script>
 </body>
 </html>

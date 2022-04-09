@@ -70,8 +70,11 @@ def getUserInfoRegister(request):
         db_obj.hint_question = request.POST['hint_question']
         db_obj.hint_answer = request.POST['hint_answer']
         try:
-            db_obj.save()
-            print('data saved Sucessfully...')
+            res = send_otp(request,db_obj.email)
+            if(res):
+                return render(request,'checkOtp.html')
+            # db_obj.save()
+                print('data saved Sucessfully...')
         except Exception as e:
             messages.info(request,"Email Id already")
             messages.info(request,"Email Id already exist Please goto Forget Password to retrive your Account")
@@ -94,19 +97,20 @@ def generateOTP() :
      return OTP
 
 
-def send_otp(request):
+def send_otp(request,emailId):
     try:
         email=request.GET.get("email")
     except Exception as e:
         print(e)
+    email = emailId
     print(email)
-    email = 'eshgsn@gmail.com'
     o=generateOTP()
     print(o)
     htmlgen = f'<p>Your OTP is <strong>{o}</strong></p>'
     a = send_mail('OTP request',o,'startabhishek29@gmail.com',[email], fail_silently=False, html_message=htmlgen)
     if(a==0):
         print('not send')
+        return False
     else:   
         print('sent succesfully')
-    return HttpResponse(o)
+    return True
