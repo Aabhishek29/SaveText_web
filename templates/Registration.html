@@ -21,7 +21,7 @@
                 <li><a href="/">Login</a></li>
             </ul>
     </div>
-    <div style="margin:50px">
+    <div style="margin:50px;">
         <!-- <h1>hello world</h1> -->
         <form method="post" action="getUserInfoRegister">
             {% csrf_token %}
@@ -34,7 +34,7 @@
                     {% endfor %}
                     </ul>
                 {% endif %}
-            <input type="submit" style="margin:50px"  id="login-btn2" name="Login" value="Register"/>
+            <input type="submit" class="btn btn-primary" style="margin-top:50px; margin-left:45vw"  id="login-btn2" name="Login" value="Register"/>
         </form>
     </div>
     <footer class="page-footer font-small stylish-color-dark pt-4" style="background-color:  #4b4a49; color: #fff;">
@@ -68,7 +68,7 @@
                   </ul>
                 </div>
         </footer>
-        <div class="footer-copyright text-center py-3">© 2021 Copyright:
+        <div class="footer-copyright text-center py-3">© 2022 Copyright:
             <a href="https://www.geu.ac.in/"> Graphic Era University(GEU)</a>
         </div>
     </footer>
@@ -87,7 +87,7 @@
                if(status=="success"){
                    otp_from_back = data;
                    document.getElementById("otp_div").style.display='block';
-                   }
+            }
       }
       );
       }

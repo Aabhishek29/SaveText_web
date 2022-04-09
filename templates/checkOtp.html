@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Student Registration</title>
 </head>
 <body>
@@ -21,8 +22,15 @@
                 <li><a href="/">Login</a></li>
             </ul>
     </div>
-    <div style="margin:50px">
-        <h1>Please Enter OTP to Check</h1>
+    <div style="margin:50px; text-align:center">
+        <h1 style="overflow-y: hidden;">Please Enter OTP to Check</h1>
+        <div class="d-flex flex-row mt-5">
+            <input type="text" onclick="next_function()" placeholder="0" class="form-control" maxlength="1" style="margin: 5px; border:2px solid blue; text-align:center;font-weight:bold" autofocus="">
+            <input type="text"  placeholder="0" class="form-control" maxlength="1" style="margin: 5px; border:2px solid blue; text-align:center;font-weight:bold">
+            <input type="text"  placeholder="0" class="form-control" maxlength="1" style="margin: 5px; border:2px solid blue; text-align:center;font-weight:bold">
+            <input type="text"  placeholder="0" class="form-control" maxlength="1" style="margin: 5px; border:2px solid blue; text-align:center;font-weight:bold">
+        </div>
+        <button class="btn btn-primary" style="margin-top: 10vh;">Submit</button>
     </div>
     <footer class="page-footer font-small stylish-color-dark pt-4" style="background-color:  #4b4a49; color: #fff;">
         <footer class="page-footer font-small mdb-color lighten-3 pt-4" >
@@ -59,5 +67,15 @@
             <a href="https://www.geu.ac.in/"> Graphic Era University(GEU)</a>
         </div>
     </footer>
+    <script>
+        function next_function(){
+            console.log("hello world")
+            $(".form-control").keyup(function () {
+                if (this.value.length == this.maxLength) {
+                  $(this).next('.form-control').focus();
+                }
+          });
+        }
+    </script>
 </body>
 </html>

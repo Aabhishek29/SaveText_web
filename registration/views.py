@@ -107,10 +107,10 @@ def send_otp(request,emailId):
     o=generateOTP()
     print(o)
     htmlgen = f'<p>Your OTP is <strong>{o}</strong></p>'
-    a = send_mail('OTP request',o,'startabhishek29@gmail.com',[email], fail_silently=False, html_message=htmlgen)
-    if(a==0):
-        print('not send')
-        return False
-    else:   
-        print('sent succesfully')
+    # a = send_mail('OTP request',o,'startabhishek29@gmail.com',[email], fail_silently=False, html_message=htmlgen)
+    # if(a==0):
+    #     print('not send')
+    #     return False
+    # else:   
+    #     print('sent succesfully')
     return True
