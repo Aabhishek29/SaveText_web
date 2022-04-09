@@ -28,9 +28,16 @@
                     <br>         
                     <input type="password" placeholder="Password" name="password" id="password" class="input-area" required="true"/>
                 </div>
+                {% if messages != "Successfully Login" or messages != "Successfully Done..."%}
+                    <ul class="messages">
+                    {% for message in messages %}
+                        <li style="color: red; position: relative; left: 10%; margin-bottom: 5px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
                 <a class="forget-id-pass" href="forgetIdPass">Forget Id and Password</a>
                 <br>
-                <input type="submit" id="login-btn" onclick="call()" name="Login" value="Login"/>
+                <input type="submit" id="login-btn"  name="Login" value="Login"/>
             </form>
         </div>
     </div>

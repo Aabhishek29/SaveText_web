@@ -3,6 +3,7 @@ function call(){
     var pass = document.getElementById("password");
     let pattern = /[0-9]/g;
     if(!pattern.test(name)){
+        // alert("Wrong Data")
         return false;
     }
     if(pass==="")

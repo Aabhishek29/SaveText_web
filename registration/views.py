@@ -1,8 +1,14 @@
+import re
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .models import UserRegistration
 from .form import RegistrationForm
 import uuid
-# Create your views here.
+from django.contrib import messages
+
+
+regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+
 def home(request):
     return render(request,'home.html')
 
@@ -12,14 +18,18 @@ def getUserLogin(request):
         print('Login Method : getting username and password ')
         username = request.POST['username']
         password = request.POST['password']
-        print(f'username : {username} \npassword : {password}')
         
-        auth = UserRegistration.objects.raw(f'''
-            SELECT name FROM UserRegistration
-            WHERE username = {username} AND password = {password}
-        ''')
-
-        print(auth)
+        password = request.POST['password']
+        print(f'username : {username} \n password : {password}')
+        
+        if(not(re.fullmatch(regex, username))):
+            messages.info(request,"Please enter valid email address")
+            return HttpResponseRedirect('/')
+        # auth = UserRegistration.objects.raw(f'''
+        #     SELECT name FROM UserRegistration
+        #     WHERE username = {username} AND password = {password}
+        # ''')
+        # print(auth)
     return render(request,'textUtils.html')
 
 def changeIdPassword(request):
