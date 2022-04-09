@@ -17,8 +17,8 @@ class RegistrationForm(forms.ModelForm):
         labels = {
             'name' : 'Name',
             'email' : 'Email',
-            'password' : "Password",
-            'confirm_password' : 'Confirm Password',
+            'password' : "Password (Minimum Length 8)",
+            'confirm_password' : 'Confirm Password ',
             'hint_question' : 'Choose Hint Question',
             'hint_answer' : 'Answer'
         }

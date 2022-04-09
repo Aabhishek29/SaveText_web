@@ -27,6 +27,13 @@
             {% csrf_token %}
             <header style="font-size: 30px; font-weight: bold;">Student Login</header>
             {{ form }}
+            {% if messages != "Successfully Login" or messages != "Successfully Done..."%}
+                    <ul class="messages">
+                    {% for message in messages %}
+                        <li style="color: red; position: relative; text-align:center; margin-bottom: 5px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
             <input type="submit" style="margin:50px" id="login-btn2" name="Login" value="Register"/>
         </form>
     </div>
