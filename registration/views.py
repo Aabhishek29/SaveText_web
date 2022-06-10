@@ -2,28 +2,31 @@ import re
 from django.http import HttpResponseRedirect , HttpResponse
 from django.shortcuts import render
 from .models import UserRegistration
-from .form import RegistrationForm
 import uuid
 from django.contrib import messages
 from django.core.mail import send_mail
 import math, random
-import smtplib
 
 validEmailRegex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
 validNameRegex = re.compile(r'^([a-z]+)*( [a-z]+)*$',re.IGNORECASE)
 
+otp_val = ""
+
+db_obj = UserRegistration()
+
 def home(request):
     return render(request,'home.html')
 
 
-def authenticateUser(userId , password):
-    auth = UserRegistration.objects.raw(f'''
-            SELECT name FROM UserRegistration
-            WHERE username = {userId} AND password = {password}
-        ''')
-    print(auth)
-    return 0
+def authenticateUser(userId , pswd):
+    try:
+        auth = UserRegistration.objects.get(email=userId)
+        if(auth.password == pswd):
+            return True
+    except Exception as e:
+        print("Exception raise on line number 29:",e)
+    return False
 
 
 def getUserLogin(request):
@@ -39,7 +42,7 @@ def getUserLogin(request):
             messages.info(request,"Please enter valid email address")
             return HttpResponseRedirect('/')
 
-        if(authenticateUser(username , password)):
+        if(not authenticateUser(username , password)):
             return HttpResponseRedirect('/')
         sessionId = genrateUUId()
         print(f'session id : {sessionId}')
@@ -50,8 +53,7 @@ def changeIdPassword(request):
 
 def getUserInfoRegister(request):
     if request.method == 'POST':
-
-        db_obj = UserRegistration()
+        global db_obj
         db_obj.name = request.POST['username']
         if(not(re.fullmatch(validNameRegex, db_obj.name))):
             messages.info(request,"Please enter valid Name")
@@ -77,7 +79,7 @@ def getUserInfoRegister(request):
             if(res):
                 print('data saved Sucessfully...')
                 return render(request,'checkOtp.html')
-            # db_obj.save()
+           
         except Exception as e:
             messages.info(request,"Email Id already")
             messages.info(request,"Email Id already exist Please goto Forget Password to retrive your Account")
@@ -111,17 +113,11 @@ def send_otp(request,emailId):
         print("Error Message On Send_otp Line Number 110: ",e)
     email = emailId
     print(email)
-    o=generateOTP()
-    print(o)
-
-    s = smtplib.SMTP('smtp.gmail.com', 587)
-  
-    s.starttls()
-    s.login("starkabhishek29", "xquzloczyeavblaw")
-    message = "f'<p>Your OTP is <strong>{o}</strong></p>'"
-    a = s.sendmail("sender_email_id", "abhi2907singh@gmail.com", message)
-    s.quit()
-    # a = send_mail('OTP request',o,'starkabhishek29@gmail.com',[email], fail_silently=False, html_message=htmlgen)
+    global otp_val
+    otp_val=generateOTP()
+    print(otp_val)
+    htmlgen = f'<p>Your OTP is <strong>{otp_val}</strong></p>'
+    a = send_mail('OTP request',otp_val,'starkabhishek29@gmail.com',[email], fail_silently=False, html_message=htmlgen)
     if(a==0):
         print('not send')
         return False
@@ -132,3 +128,23 @@ def send_otp(request,emailId):
 
 def renderOtpPage(request):
     return render(request,'checkOtp.html')
+
+
+def verifyOTP(request):
+    if request.method == 'GET':
+        print("OTP verifing")
+        firstVal = request.GET['input1']
+        secondVal = request.GET['input2']
+        thirdVal = request.GET['input3']
+        fourthVal = request.GET['input4']
+
+        val = firstVal+secondVal+thirdVal+fourthVal
+
+        print(f'OTP genrated is: {otp_val} and OTP user entered is: {val}')
+        print(f'OTP genrated is: {type(otp_val)} and OTP user entered is: {type(val)}')
+        if(str(val)==str(otp_val)):
+            print("OTP varified")
+            db_obj.save()
+            db_obj.clean()
+            return render(request,'home.html')
+    return HttpResponse("<h1>OTP Not Matched</h1>")
