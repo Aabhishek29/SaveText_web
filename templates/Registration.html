@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <title>Student Registration</title>
 </head>
 <body>
@@ -19,20 +20,21 @@
 		</a>
         <ul class="nav justify-content-end">
             <li class="nav-item ">
-              <a class="nav-link active text-light" href="#">Active</a>
+              <a class="nav-link active text-light" href="/">Login</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link text-dark" href="#">Link</a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link text-dark" href="#">Link</a>
-            </li>
+            </li> -->
         </ul>
 			</nav>
     <div style="background-image: url('../static/images/LoginBgImage.jpg'); background-size: 100% 100%;">
         <!-- <h1>hello world</h1> -->
         <form method="post" action="getUserInfoRegister" class="rounded mx-auto d-block" style="align-items: center; justify-content: center;">
             <header class="m-4" style="font-size: 22px;font-weight:bold">Registration Form</header>
+            {% csrf_token %}
             <div class="form-group m-4">
                 <label>Username</label>
                 <input class="form-control" type="text" placeholder="username" name="username" id="username" />

@@ -7,6 +7,7 @@ import uuid
 from django.contrib import messages
 from django.core.mail import send_mail
 import math, random
+import smtplib
 
 validEmailRegex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
@@ -51,7 +52,7 @@ def getUserInfoRegister(request):
     if request.method == 'POST':
 
         db_obj = UserRegistration()
-        db_obj.name = request.POST['name']
+        db_obj.name = request.POST['username']
         if(not(re.fullmatch(validNameRegex, db_obj.name))):
             messages.info(request,"Please enter valid Name")
             return HttpResponseRedirect('/registerUser')
@@ -59,11 +60,11 @@ def getUserInfoRegister(request):
         if(not(re.fullmatch(validEmailRegex, db_obj.email))):
             messages.info(request,"Please enter valid email address")
             return HttpResponseRedirect('/registerUser')
-        db_obj.password = request.POST['password']
+        db_obj.password = request.POST['pswd']
         if(len(db_obj.password)<8):
             messages.info(request,"Password should be of length 8 characteres")
             return HttpResponseRedirect('/registerUser')
-        db_obj.confirm_password = request.POST['confirm_password']
+        db_obj.confirm_password = request.POST['conf_pswd']
         if(db_obj.password != db_obj.confirm_password):
             messages.info(request,"Password doesn't match")
             return HttpResponseRedirect('/registerUser')
@@ -80,7 +81,7 @@ def getUserInfoRegister(request):
         except Exception as e:
             messages.info(request,"Email Id already")
             messages.info(request,"Email Id already exist Please goto Forget Password to retrive your Account")
-            print(e)
+            print("Error Message On Line Number 84: ",e)
             return HttpResponseRedirect('/registerUser')
         return render(request, 'Home.html')
     return render(request,'/')
@@ -107,16 +108,27 @@ def send_otp(request,emailId):
     try:
         email=request.GET.get("email")
     except Exception as e:
-        print(e)
+        print("Error Message On Send_otp Line Number 110: ",e)
     email = emailId
     print(email)
     o=generateOTP()
     print(o)
-    htmlgen = f'<p>Your OTP is <strong>{o}</strong></p>'
-    a = send_mail('OTP request',o,'startabhishek29@gmail.com',[email], fail_silently=False, html_message=htmlgen)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+  
+    s.starttls()
+    s.login("starkabhishek29", "xquzloczyeavblaw")
+    message = "f'<p>Your OTP is <strong>{o}</strong></p>'"
+    a = s.sendmail("sender_email_id", "abhi2907singh@gmail.com", message)
+    s.quit()
+    # a = send_mail('OTP request',o,'starkabhishek29@gmail.com',[email], fail_silently=False, html_message=htmlgen)
     if(a==0):
         print('not send')
         return False
     else:   
         print('sent succesfully')
     return True
+
+
+def renderOtpPage(request):
+    return render(request,'checkOtp.html')
