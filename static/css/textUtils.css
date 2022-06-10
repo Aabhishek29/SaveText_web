@@ -2,6 +2,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 #nav-bar{
   background-color:#2498d6;
@@ -112,3 +113,54 @@
       border-color: #333333; */
 
   }
+
+
+.parent-main-container{
+  width: 100%;
+}
+
+.windows-menu-panel{
+  display: inline-flex;
+  width: 100%;
+  background-color: #333333;
+}
+
+.windows-menu-panel button{
+  margin-left: 10px;
+  border: none;
+  padding: 10px;
+  background-color: #333333;
+  color: white;
+  
+}
+
+.windows-menu-panel button:hover{
+  background-color: white;
+  color: #333333;
+  border-radius: 10px;
+  opacity: 0.8;
+
+  /* padding: 5px; */
+}
+
+.windows-text-panel{
+  height: 80vh;
+  width: 100%;
+  display: inline-flex;
+}
+
+.left-directory-panel{
+  width: 25%;
+  height: 100%;
+  background-color: #666666;
+}
+
+.right-textarea-panel{
+  width: 100%;
+  background-color: grey;
+  padding: 10px;
+}
+
+.right-textarea-panel textarea{
+  padding: 10px;
+}

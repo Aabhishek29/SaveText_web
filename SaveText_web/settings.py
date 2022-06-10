@@ -146,4 +146,4 @@ EMAIL_HOST_PASSWORD = "29072002@aS"
 
 # UserName : lucifer
 # email : abhi@abhi.com
-# password : helloworld
+# password : 29072002

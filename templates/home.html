@@ -14,7 +14,8 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="background: whitesmoke; width: 100vw; height: 100vh;">
+    <div style="background: whitesmoke; width: 100vw; height: 100vh;
+     background-image: url('../static/images/LoginBgImage.jpg'); background-size: 100vw 100vh;">
         <div id="nav-bar">
             <label>SaveText</label>
             <ul>
@@ -23,9 +24,9 @@
                 <li><a href="registerUser">Register</a></li>
             </ul>
         </div>
-        <div id="form-div">
+        <div id="form-div" style="background-image: url('../static/images/LoginBgImage.jpg'); background-size: 100% 100%;">
             <form method="post" action="getUserLogin" name="login_form">
-                 {% csrf_token %}
+                {% csrf_token %}
                 <header class="form-header">Login</header>
                 <p class="discription-para">Save your Text Files here </p>
                 <div class="form-items">
@@ -36,7 +37,10 @@
                 {% if messages != "Successfully Login" or messages != "Successfully Done..."%}
                     <ul class="messages">
                     {% for message in messages %}
-                        <li style="color: red; position: relative; left: 10%; margin-bottom: 5px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        <li style="color: red; position: relative; left: 10%; margin-bottom: 5px;" 
+                            {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                                {{ message }}
+                        </li>
                     {% endfor %}
                     </ul>
                 {% endif %}
@@ -44,30 +48,8 @@
                 <br>
                 <input type="submit" id="login-btn"  name="Login" value="Login"/>
             </form>
+            <!-- <img src="..\static\images\Titleimages.jfif" alt="something went wrong" /> -->
         </div>
-        <!-- <div id="email_div" style="display: block;" >
-
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
-            <button  onclick="ajax_send_otp()">Send OTP</button>
-        </div>
-        <div id="verify_text_div"></div>
-        <div id="otp_div" style="display: none;" >
-        
-            <label for="email">OTP</label>
-            <input type="text" name="otp" id="otp">
-            <button  onclick="verify_otp()">Verify</button>
-        </div>
-        <br>
-        <div id="form_div" style="display: none;" >
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-            <label for="con_password">Confirm Password</label>
-            <input type="password" name="con_password" id="con_password">
-            <input type="submit" value="Sign In">
-        </div> -->
     </div>
     <footer class="page-footer font-small stylish-color-dark pt-4" style="background-color:  #4b4a49; color: #fff;">
         <footer class="page-footer font-small mdb-color lighten-3 pt-4" >

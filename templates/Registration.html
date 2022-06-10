@@ -12,29 +12,59 @@
     <title>Student Registration</title>
 </head>
 <body>
-    <div id="nav-bar">
-        <img style="width: 45px; height: 45px; margin-right: 20px; border-radius: 50%;" src="../static/images/geuImage.jpeg" alt="something went wrong"/>
-        <label>Save your Text Files here </label>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="about">About us</a></li>
-                <li><a href="/">Login</a></li>
-            </ul>
-    </div>
-    <div style="margin:50px;">
+	<nav class="navbar navbar-light bg-primary">
+		<a class="navbar-brand" href="#">
+			<img src="../static/images/logoImg.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+			SaveText
+		</a>
+        <ul class="nav justify-content-end">
+            <li class="nav-item ">
+              <a class="nav-link active text-light" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">Link</a>
+            </li>
+        </ul>
+			</nav>
+    <div style="background-image: url('../static/images/LoginBgImage.jpg'); background-size: 100% 100%;">
         <!-- <h1>hello world</h1> -->
-        <form method="post" action="getUserInfoRegister">
-            {% csrf_token %}
-            <header style="font-size: 30px; font-weight: bold;">Student Login</header>
-            {{ form }}
-            {% if messages != "Successfully Login" or messages != "Successfully Done..."%}
-                    <ul class="messages">
-                    {% for message in messages %}
-                        <li style="color: red; position: relative; text-align:center; margin-bottom: 5px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                    </ul>
-                {% endif %}
-            <input type="submit" class="btn btn-primary" style="margin-top:50px; margin-left:45vw"  id="login-btn2" name="Login" value="Register"/>
+        <form method="post" action="getUserInfoRegister" class="rounded mx-auto d-block" style="align-items: center; justify-content: center;">
+            <header class="m-4" style="font-size: 22px;font-weight:bold">Registration Form</header>
+            <div class="form-group m-4">
+                <label>Username</label>
+                <input class="form-control" type="text" placeholder="username" name="username" id="username" />
+            </div>
+            <div class="form-group m-4">
+                <label>Email</label>
+                <input class="form-control" type="email" placeholder="email" name="email" id="email" />
+            </div>
+            <div class="form-group m-4">
+                <label>Password</label>
+                <input class="form-control" type="password" placeholder="password" name="pswd" id="pswd" />
+            </div>
+            <div class="form-group m-4">
+                <label>Confirm Password</label>
+                <input class="form-control" type="text" placeholder="confirm password" name="conf_pswd" id="conf_pswd" />
+            </div>
+            <div class="form-group m-4">
+                <label for="hint_question">Hint Question</label>
+                <select class="form-control" id="hint_question" name="hint_question">
+                  <option value="First School Name">First School Name</option>
+                  <option value="Pet Name">Pet Name</option>
+                  <option value="Teacher Name">Teacher Name</option>
+                  <option value="Favorate Food">Favorate Food</option>
+                  <option value="Collage Name">Collage Name</option>
+                </select>
+            </div>
+            <div class="form-group m-4">
+                <label for="hint_answer">Hint Answer</label>
+                <input class="form-control" type="text" placeholder="dog name" name="hint_answer" id="hint_answer" />
+            </div>
+
+            <input type="submit" value="Register" class="btn btn-primary btn-lg mb-3" style="margin-left:40vw"/>
         </form>
     </div>
     <footer class="page-footer font-small stylish-color-dark pt-4" style="background-color:  #4b4a49; color: #fff;">
@@ -107,3 +137,11 @@
   </script>
 </body>
 </html>
+
+
+<!-- <div class="form-check">
+	<input type="checkbox" class="form-check-input" id="dropdownCheck">
+	<label class="form-check-label" for="dropdownCheck">
+		Remember me
+	</label>
+</div> -->

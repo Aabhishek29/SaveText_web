@@ -22,11 +22,27 @@
                     <li><a href="/">LogOut</a></li>
                 </ul>
         </div>
-        <button class="button button1">Save</button>
-        <button class="button button2">Reload</button>
-        <button class="button button3">Delete</button>
-        <div>
-        <textarea class="textarea" placeholder="enter the text you want to save"></textarea>
+        <div class="parent-main-container">
+          <div class="windows-menu-panel">
+            <button>New File</button>
+            <button>Save</button>
+            <button>Reload directory</button>
+            <button>clear all</button>
+            <button>Delete File</button>
+          </div>
+          <div class="windows-text-panel">
+            <div class="left-directory-panel">
+              <h1 style="overflow: hidden;">Directory</h1>
+              <ul style="margin-left: 25px">
+                <li style="list-style: lower-alpha;">None</li>
+                <li style="list-style: lower-alpha;">None</li>
+                <li style="list-style: lower-alpha;">None</li>
+              </ul>
+            </div>
+            <div class="right-textarea-panel">
+                <textarea style="width: 100%;height: 80vh;" placeholder="Enter your text..."></textarea>
+            </div>
+          </div>
         </div>
 
         <footer class="page-footer font-small stylish-color-dark pt-4" style="background-color:  #4b4a49; color: #fff;">

@@ -40,7 +40,7 @@ def getUserLogin(request):
 
         if(authenticateUser(username , password)):
             return HttpResponseRedirect('/')
-        sessionId = uuid.uuid4().hex[:15].upper()
+        sessionId = genrateUUId()
         print(f'session id : {sessionId}')
     return render(request,'textUtils.html')
 
@@ -69,12 +69,14 @@ def getUserInfoRegister(request):
             return HttpResponseRedirect('/registerUser')
         db_obj.hint_question = request.POST['hint_question']
         db_obj.hint_answer = request.POST['hint_answer']
+
+        db_obj.userId = genrateUUId()
         try:
             res = send_otp(request,db_obj.email)
             if(res):
+                print('data saved Sucessfully...')
                 return render(request,'checkOtp.html')
             # db_obj.save()
-                print('data saved Sucessfully...')
         except Exception as e:
             messages.info(request,"Email Id already")
             messages.info(request,"Email Id already exist Please goto Forget Password to retrive your Account")
@@ -83,9 +85,13 @@ def getUserInfoRegister(request):
         return render(request, 'Home.html')
     return render(request,'/')
 
+
+def genrateUUId():
+    return uuid.uuid4().hex[:15]
+
 def registerUser(request):
-    form = RegistrationForm()
-    return render(request,'Registration.html',{'form':form})
+    # form = RegistrationForm()
+    return render(request,'Registration.html')
 
 
 
@@ -107,10 +113,10 @@ def send_otp(request,emailId):
     o=generateOTP()
     print(o)
     htmlgen = f'<p>Your OTP is <strong>{o}</strong></p>'
-    # a = send_mail('OTP request',o,'startabhishek29@gmail.com',[email], fail_silently=False, html_message=htmlgen)
-    # if(a==0):
-    #     print('not send')
-    #     return False
-    # else:   
-    #     print('sent succesfully')
+    a = send_mail('OTP request',o,'startabhishek29@gmail.com',[email], fail_silently=False, html_message=htmlgen)
+    if(a==0):
+        print('not send')
+        return False
+    else:   
+        print('sent succesfully')
     return True

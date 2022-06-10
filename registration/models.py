@@ -1,4 +1,5 @@
 import email
+from pyexpat import model
 from statistics import mode
 from turtle import Turtle
 from django.db import models
@@ -30,4 +31,8 @@ class UserRegistration(models.Model):
 
     hint_answer = models.CharField(
         max_length=30,blank=True,null=True
+    )
+
+    userId = models.CharField(
+        max_length=15,null=False,blank=False,primary_key=True
     )
