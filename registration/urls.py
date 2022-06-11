@@ -10,5 +10,6 @@ urlpatterns = [
     path(r'getUserInfoRegister',views.getUserInfoRegister,name='getUserInfoRegister'),
     path(r"send_otp",views.send_otp,name="send otp"),
     path(r'confirm_otp',views.renderOtpPage,name='renderOtpPage'),
-    path(r'verifyOTP',views.verifyOTP,name='verifyOTP')
+    path(r'verifyOTP',views.verifyOTP,name='verifyOTP'),
+    path(r'getUserLogout',views.getUserLogout,name='getUserLogout')
 ]

@@ -16,6 +16,17 @@ otp_val = ""
 db_obj = UserRegistration()
 
 def home(request):
+    try:
+        username = request.COOKIES['name']
+        password = request.COOKIES['password']
+        print(username+"    "+password)
+        if(username!="" and password!=""):
+            print("Cookie found")
+            print(username+"    "+password)
+            if(authenticateUser(username,password)):
+                return HttpResponseRedirect('/getUserLogin')
+    except Exception as e:
+        print("No Cookie Found : ",e)
     return render(request,'home.html')
 
 
@@ -29,7 +40,18 @@ def authenticateUser(userId , pswd):
     return False
 
 
+def getUserLogout(request):
+    response = HttpResponseRedirect('/')
+    try:
+        response.delete_cookie('name')
+        response.delete_cookie('password')
+    except Exception as e:
+        print("Exception in getUserLogout : ",e)
+    return response
+
+
 def getUserLogin(request):
+    response = render(request,'textUtils.html')
     if request.method == 'POST':
         print('Login Method : getting username and password ')
         username = request.POST['username']
@@ -44,9 +66,11 @@ def getUserLogin(request):
 
         if(not authenticateUser(username , password)):
             return HttpResponseRedirect('/')
+        response.set_cookie('name',username)
+        response.set_cookie('password',password)
         sessionId = genrateUUId()
         print(f'session id : {sessionId}')
-    return render(request,'textUtils.html')
+    return response
 
 def changeIdPassword(request):
     return render(request,'forgetIdPass.html')
