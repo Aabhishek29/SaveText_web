@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 import math, random
 
+
 validEmailRegex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
 validNameRegex = re.compile(r'^([a-z]+)*( [a-z]+)*$',re.IGNORECASE)
