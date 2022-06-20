@@ -19,7 +19,7 @@
     </a>
     <ul class="nav justify-content-end">
       <li class="nav-item ">
-        <a class="nav-link active text-light" href="/">Logout</a>
+        <a class="nav-link active text-light" href="/">Login</a>
       </li>
       <!-- <li class="nav-item">
         <a class="nav-link text-dark" href="#">Link</a>
@@ -29,9 +29,14 @@
       </li> -->
     </ul>
 </nav>
-    <div style="margin:50px">
-        <h1>Forget id password</h1>
-    </div>
+    <form method="get"  action="forgetIdPassword" class="rounded mx-auto d-block" style="height: 50vh; align-content: center;">
+      <header class="m-4" style="font-size: 22px;font-weight:bold">Forget Id or Password</header>
+      <div class="form-group m-4">
+        <label>Email</label>
+        <input class="form-control" type="email" placeholder="email" name="email" id="email" />
+      </div>
+      <input type="submit" value="Submit" class="btn btn-primary btn-lg mb-3" style="margin-left:40vw"/>
+    </form>
     <footer class="page-footer font-small stylish-color-dark pt-4" style="background-color:  #4b4a49; color: #fff;">
         <footer class="page-footer font-small mdb-color lighten-3 pt-4" >
             <div class="container text-center text-md-left"style="background-color:  #4b4a49; color:#fff">

@@ -1,5 +1,4 @@
-from unicodedata import name
-from django.urls import path,include
+from django.urls import path
 from . import views
 
 urlpatterns = [
@@ -11,5 +10,7 @@ urlpatterns = [
     path(r"send_otp",views.send_otp,name="send otp"),
     path(r'confirm_otp',views.renderOtpPage,name='renderOtpPage'),
     path(r'verifyOTP',views.verifyOTP,name='verifyOTP'),
-    path(r'getUserLogout',views.getUserLogout,name='getUserLogout')
+    path(r'getUserLogout',views.getUserLogout,name='getUserLogout'),
+    path(r'forgetIdPassword',views.forgetIdPassword,name='forgetIdPassword'),
+    path(r'save_users_content',views.save_users_content,name='save_users_content')
 ]

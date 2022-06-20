@@ -1,7 +1,3 @@
-import email
-from pyexpat import model
-from statistics import mode
-from turtle import Turtle
 from django.db import models
 
 # Create your models here.
@@ -36,3 +32,26 @@ class UserRegistration(models.Model):
     userId = models.CharField(
         max_length=15,null=False,blank=False,primary_key=True
     )
+
+
+class SaveTextDocs(models.Model):
+    file_name = models.CharField(
+        max_length=30,null=True,blank=True
+    )
+    userId = models.ForeignKey(
+        UserRegistration,
+        default=None, on_delete=models.CASCADE)
+    createdAt = models.DateTimeField(
+        blank=False, null=False
+    )
+    updateAt = models.DateTimeField(
+        blank=False,null=False
+    )
+    docId = models.CharField(
+        max_length=15, blank=False, null=False,
+        primary_key=True
+    )
+    fileData = models.TextField(
+        blank=True,null=True
+    )
+

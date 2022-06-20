@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'javascript/utils.js' %}?{% now 'U' %}"></script>
     </head>
     <body>
       <nav class="navbar navbar-light bg-primary">
@@ -32,11 +33,11 @@
     </nav>
         <div class="parent-main-container">
           <div class="windows-menu-panel">
-            <button>New File</button>
-            <button>Save</button>
-            <button>Reload directory</button>
-            <button>clear all</button>
-            <button>Delete File</button>
+            <button id="new_file_btn" onclick="newFile()">New File</button>
+            <button id="save_data_file" onclick="saveFileData()">Save</button>
+            <button id="">Reload directory</button>
+            <button id="clear_file_data" onclick="clearFileData()">clear all</button>
+            <button id="">Delete File</button>
           </div>
           <div class="windows-text-panel">
             <div class="left-directory-panel">
@@ -48,7 +49,7 @@
               </ul>
             </div>
             <div class="right-textarea-panel">
-                <textarea style="width: 100%;height: 80vh;" placeholder="Enter your text..."></textarea>
+                <textarea style="width: 100%;height: 80vh;" id="textarea" placeholder="Enter your text..."></textarea>
             </div>
           </div>
         </div>

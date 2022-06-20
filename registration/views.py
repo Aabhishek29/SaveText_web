@@ -15,6 +15,11 @@ otp_val = ""
 
 db_obj = UserRegistration()
 
+# flag variable is used to confirm_otp
+# if flag = 0 used to save new registration data in database
+# if flag = 1 used to update password
+flag = 1  
+
 def home(request):
     try:
         username = request.COOKIES['name']
@@ -101,6 +106,8 @@ def getUserInfoRegister(request):
         try:
             res = send_otp(request,db_obj.email)
             if(res):
+                global flag
+                flag = 0
                 print('data saved Sucessfully...')
                 return render(request,'checkOtp.html')
            
@@ -155,6 +162,7 @@ def renderOtpPage(request):
 
 
 def verifyOTP(request):
+    global flag
     if request.method == 'GET':
         print("OTP verifing")
         firstVal = request.GET['input1']
@@ -166,9 +174,39 @@ def verifyOTP(request):
 
         print(f'OTP genrated is: {otp_val} and OTP user entered is: {val}')
         print(f'OTP genrated is: {type(otp_val)} and OTP user entered is: {type(val)}')
-        if(str(val)==str(otp_val)):
+        print(f"flag value for this operation is {flag}")
+        if(str(val)==str(otp_val) and flag==0):
             print("OTP varified")
             db_obj.save()
             db_obj.clean()
+            flag=1
             return render(request,'home.html')
+        else:
+            return HttpResponseRedirect('/')
+
     return HttpResponse("<h1>OTP Not Matched</h1>")
+
+
+'''
+    function need to complete by creating a new web page which contain
+    password and confirm password text field and after that password field
+    of that person must be update
+'''
+
+def forgetIdPassword(request):
+    global flag
+    if request.method == 'GET':
+        email = request.GET['email']
+        try:
+            res = send_otp(request,email)
+            flag = 1
+            if(res):
+                return HttpResponseRedirect("/confirm_otp")
+        except Exception as e:
+            print("OTP Not send becouse of : ",e)
+    return render(request,'forgetIdPass.html')
+
+
+def save_users_content(request):
+    data = request.POST['text']
+    return HttpResponse("data value saved")
