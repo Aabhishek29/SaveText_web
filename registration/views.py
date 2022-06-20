@@ -209,5 +209,10 @@ def forgetIdPassword(request):
 
 
 def save_users_content(request):
-    data = request.POST['text']
+    try:
+        data = request.GET['text']
+        print(data)
+    except Exception as e:
+        print(e)
+    
     return HttpResponse("data value saved")

@@ -1,5 +1,6 @@
 console.log("Javasript file connected");
 
+
 const newFile = () => {
     var data = document.getElementById("textarea");
     if(data.value != "")
@@ -16,11 +17,11 @@ const newFile = () => {
 const saveFileData = () =>{
     var file_name = prompt("enter file name:");
     $.ajax({
-        type: "POST",
-        url: "{{ url 'save_users_content' }}",   
+        type: "GET",
+        url: "/save_users_content",   
         data: { 
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-                text: "this is my test view",
+                // csrfmiddlewaretoken: '{{ csrf_token }}',
+                text: document.getElementById("textarea").value,
                 fileName : file_name
             },  
         success:  function(response){
@@ -30,7 +31,7 @@ const saveFileData = () =>{
             console.log(e)
         }
     });
-    console.log("file saved");
+    console.log("data Sucessfully send to server");
 }
 
 const clearFileData = () => {
