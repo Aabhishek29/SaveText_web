@@ -1,18 +1,22 @@
+from datetime import date
+import datetime
 import re
 from django.http import HttpResponseRedirect , HttpResponse
 from django.shortcuts import render
-from .models import UserRegistration
+from .models import UserRegistration,SaveTextDocs
 import uuid
 from django.contrib import messages
 from django.core.mail import send_mail
 import math, random
-
+from .utils import encrypt,genrateKey
 
 validEmailRegex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
 validNameRegex = re.compile(r'^([a-z]+)*( [a-z]+)*$',re.IGNORECASE)
 
 otp_val = ""
+
+userId = ""
 
 db_obj = UserRegistration()
 
@@ -36,9 +40,11 @@ def home(request):
     return render(request,'home.html')
 
 
-def authenticateUser(userId , pswd):
+def authenticateUser(email , pswd):
     try:
-        auth = UserRegistration.objects.get(email=userId)
+        auth = UserRegistration.objects.get(email=email)
+        global db_obj
+        db_obj = auth
         if(auth.password == pswd):
             return True
     except Exception as e:
@@ -51,12 +57,14 @@ def getUserLogout(request):
     try:
         response.delete_cookie('name')
         response.delete_cookie('password')
+        response.delete_cookie('object_class')
     except Exception as e:
         print("Exception in getUserLogout : ",e)
     return response
 
 
 def getUserLogin(request):
+    global db_obj
     response = render(request,'textUtils.html')
     if request.method == 'POST':
         print('Login Method : getting username and password ')
@@ -74,6 +82,7 @@ def getUserLogin(request):
             return HttpResponseRedirect('/')
         response.set_cookie('name',username)
         response.set_cookie('password',password)
+        response.set_cookie('object_class',db_obj)
         sessionId = genrateUUId()
         print(f'session id : {sessionId}')
     return response
@@ -209,10 +218,22 @@ def forgetIdPassword(request):
 
 
 def save_users_content(request):
+    global db_obj
     try:
         data = request.GET['text']
+        file_name = request.GET['file_name']
         print(data)
+        print(file_name)
     except Exception as e:
         print(e)
-    
+        return HttpResponse("<sript>alert('something went wrong')</script>")
+    secret_key = genrateKey()
+    data_class_obj = SaveTextDocs()
+    data_class_obj.file_name = file_name
+    data_class_obj.fileData = encrypt(data,secret_key)
+    data_class_obj.createdAt = datetime.datetime.now()
+    data_class_obj.updateAt = datetime.datetime.now()
+    data_class_obj.userId = db_obj.userId
+    data_class_obj.docId = genrateUUId()
+    data_class_obj.save()
     return HttpResponse("data value saved")

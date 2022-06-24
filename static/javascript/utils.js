@@ -15,6 +15,7 @@ const newFile = () => {
 
 
 const saveFileData = () =>{
+    
     var file_name = prompt("enter file name:");
     $.ajax({
         type: "GET",
@@ -22,7 +23,7 @@ const saveFileData = () =>{
         data: { 
                 // csrfmiddlewaretoken: '{{ csrf_token }}',
                 text: document.getElementById("textarea").value,
-                fileName : file_name
+                file_name : file_name
             },  
         success:  function(response){
                console.log(response)
@@ -31,6 +32,7 @@ const saveFileData = () =>{
             console.log(e)
         }
     });
+    
     console.log("data Sucessfully send to server");
 }
 
