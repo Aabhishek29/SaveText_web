@@ -1,95 +1,43 @@
 {% load static %}
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Text Area</title>
-        <meta name="description" content="Saving-Text">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'css/textUtils.css' %}?{% now 'U' %}">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="{% static 'javascript/utils.js' %}?{% now 'U' %}"></script>
-    </head>
-    <body>
-      <nav class="navbar navbar-light bg-primary">
-        <a class="navbar-brand" href="#">
-          <img src="../static/images/logoImg.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-          SaveText
-        </a>
-        <ul class="nav justify-content-end">
-          <li class="nav-item ">
-            <a class="nav-link active text-light" href="getUserLogout">Logout</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Link</a>
-          </li> -->
-          <!-- <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Link</a>
-          </li> -->
-        </ul>
-    </nav>
-        <div class="parent-main-container">
-          <div class="windows-menu-panel">
-            <button id="new_file_btn" onclick="newFile()">New File</button>
-            <button id="save_data_file" onclick="saveFileData()">Save</button>
-            <button id="">Reload directory</button>
-            <button id="clear_file_data" onclick="clearFileData()">clear all</button>
-            <button id="">Delete File</button>
-          </div>
-          <div class="windows-text-panel">
-            <div class="left-directory-panel">
-              <h1 style="overflow: hidden;">Directory</h1>
-              <ul style="margin-left: 25px">
-                <li style="list-style: lower-alpha;">None</li>
-                <li style="list-style: lower-alpha;">None</li>
-                <li style="list-style: lower-alpha;">None</li>
-              </ul>
-            </div>
-            <div class="right-textarea-panel">
-              {% csrf_token %}
-                <textarea style="width: 100%;height: 80vh;" id="textarea" placeholder="Enter your text..."></textarea>
-            </div>
-          </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/notebookUI.css' %}?{% now 'U' %}">
+    <script src="https://kit.fontawesome.com/1deaef375e.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="navbar">
+        <header>{{ file }} - {{ name }} - SaveText</header>
+    </div>
+    <div class="menu">
+        <div>
+            <button class="menu-btn">File</button>
+            <button class="menu-btn">Edit</button>
+            <button class="menu-btn">Help</button>
         </div>
-
-        <footer class="page-footer font-small stylish-color-dark pt-4" style="background-color:  #4b4a49; color: #fff;">
-            <footer class="page-footer font-small mdb-color lighten-3 pt-4" >
-                <div class="container text-center text-md-left"style="background-color:  #4b4a49; color:#fff">
-                    <div class="row">
-                    <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
-                      <h5 class="font-weight-bold text-uppercase mb-4" style="overflow: hidden;">Graphic Era </h5>
-                      <p>Established vide Act No 12 of 2011 of Uttarakhand State Legislature
-                         University under Section 2(f) of the UGC Act, 1956 set up under the aegis of Graphic Era Educational Society, Dehradun.</p>
-                      </div>
-                    <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
-                      <h5 class="font-weight-bold text-uppercase mb-4" style="overflow: hidden;">Address</h5>
-                      <ul class="list-unstyled">
-                        <li>
-                          <p>
-                            <i class="fas fa-home mr-3"></i> Dehradun,Uttrakhand,India</p>
-                        </li>
-                        <li>
-                          <p>
-                            <i class="fas fa-envelope mr-3"></i> geu@gmail.com</p>
-                        </li>
-                        <li>
-                          <p>
-                            <i class="fas fa-phone mr-3"></i>18008906027</p>
-                        </li>
-                        <li>
-                          <p>
-                            <i class="fas fa-print mr-3"></i>7500013334</p>
-                        </li>
-                      </ul>
+        <a class="logout-section" href="#">
+            <i style="color: #fff;" class="fa-solid fa-right-from-bracket"></i>
+            <label style="color: #fff;">Logout</label>
+        </a>
+    </div>
+    <div class="textarea">
+        <div class="textarea-left">
+            <header id="explorer">EXPLORER</header>
+            <ul>
+                {% for i in dir %}
+                    <div style="display: flex; margin:10px; cursor: pointer;">
+                        <i style="color: #ddd; margin: 2px;font-size: 18px;" class="fa-solid fa-file"></i>
+                        <li class="dir-items">{{ i }}</li>
                     </div>
-            </footer>
-            <div class="footer-copyright text-center py-3">© 2022 Copyright:
-                <a href="https://www.geu.ac.in/"> Graphic Era University(GEU)</a>
-            </div>
-        </footer>
-        
-    </body>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="textarea-right">
+            <textarea placeholder="text..." class="input-textarea"></textarea>
+        </div>
+    </div>
+</body>
 </html>

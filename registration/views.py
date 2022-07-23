@@ -27,23 +27,23 @@ db_obj = UserRegistration()
 # if flag = 1 used to update password
 flag = 1  
 
-# def home(request):
-#     try:
-#         username = request.COOKIES['name']
-#         password = request.COOKIES['password']
-#         print(username+"    "+password)
-#         if(username!="" and password!=""):
-#             print("Cookie found")
-#             print(username+"    "+password)
-#             if(authenticateUser(username,password)):
-#                 return HttpResponseRedirect('/getUserLogin')
-#     except Exception as e:
-#         print("No Cookie Found : ",e)
-#     return render(request,'home.html')
-
-
 def home(request):
-    return render(request, 'notebookUI.html',{'name':'Abhishek','file':'System Design','dir':['program1.c','program2.cpp']})
+    try:
+        username = request.COOKIES['name']
+        password = request.COOKIES['password']
+        print(username+"    "+password)
+        if(username!="" and password!=""):
+            print("Cookie found")
+            print(username+"    "+password)
+            if(authenticateUser(username,password)):
+                return HttpResponseRedirect('/getUserLogin')
+    except Exception as e:
+        print("No Cookie Found : ",e)
+    return render(request,'home.html')
+
+
+# def home(request):
+#     return render(request, 'notebookUI.html',{'name':'Abhishek','file':'System Design','dir':['program1.c','program2.cpp']})
 
 
 def authenticateUser(email , pswd):
@@ -71,7 +71,7 @@ def getUserLogout(request):
 
 def getUserLogin(request):
     global db_obj
-    response = render(request,'textUtils.html')
+    response = render(request,'textUtils.html',{'name':'Abhishek','file':'System Design','dir':['program1.c','program2.cpp']})
     if request.method == 'POST':
         print('Login Method : getting username and password ')
         username = request.POST['username']
