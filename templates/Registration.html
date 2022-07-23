@@ -37,23 +37,23 @@
             {% csrf_token %}
             <div class="form-group m-4">
                 <label>Username</label>
-                <input class="form-control" type="text" placeholder="username" name="username" id="username" />
+                <input class="form-control" type="text" placeholder="username" name="username" id="username" required="true"/>
             </div>
             <div class="form-group m-4">
                 <label>Email</label>
-                <input class="form-control" type="email" placeholder="email" name="email" id="email" />
+                <input class="form-control" type="email" placeholder="email" name="email" id="email" required="true"/>
             </div>
             <div class="form-group m-4">
                 <label>Password</label>
-                <input class="form-control" type="password" placeholder="password" name="pswd" id="pswd" />
+                <input class="form-control" type="password" placeholder="password" name="pswd" id="pswd" required="true"/>
             </div>
             <div class="form-group m-4">
                 <label>Confirm Password</label>
-                <input class="form-control" type="text" placeholder="confirm password" name="conf_pswd" id="conf_pswd" />
+                <input class="form-control" type="text" placeholder="confirm password" name="conf_pswd" id="conf_pswd" required="true"/>
             </div>
             <div class="form-group m-4">
                 <label for="hint_question">Hint Question</label>
-                <select class="form-control" id="hint_question" name="hint_question">
+                <select class="form-control" id="hint_question" name="hint_question" required="true">
                   <option value="First School Name">First School Name</option>
                   <option value="Pet Name">Pet Name</option>
                   <option value="Teacher Name">Teacher Name</option>
@@ -63,7 +63,7 @@
             </div>
             <div class="form-group m-4">
                 <label for="hint_answer">Hint Answer</label>
-                <input class="form-control" type="text" placeholder="dog name" name="hint_answer" id="hint_answer" />
+                <input class="form-control" type="text" placeholder="dog name" name="hint_answer" id="hint_answer" required="true"/>
             </div>
 
             <input type="submit" value="Register" class="btn btn-primary btn-lg mb-3" style="margin-left:40vw"/>

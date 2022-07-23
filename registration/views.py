@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 import math, random
 from .utils import encrypt,genrateKey
 
+
 validEmailRegex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
 validNameRegex = re.compile(r'^([a-z]+)*( [a-z]+)*$',re.IGNORECASE)
@@ -20,24 +21,29 @@ userId = ""
 
 db_obj = UserRegistration()
 
+
 # flag variable is used to confirm_otp
 # if flag = 0 used to save new registration data in database
 # if flag = 1 used to update password
 flag = 1  
 
+# def home(request):
+#     try:
+#         username = request.COOKIES['name']
+#         password = request.COOKIES['password']
+#         print(username+"    "+password)
+#         if(username!="" and password!=""):
+#             print("Cookie found")
+#             print(username+"    "+password)
+#             if(authenticateUser(username,password)):
+#                 return HttpResponseRedirect('/getUserLogin')
+#     except Exception as e:
+#         print("No Cookie Found : ",e)
+#     return render(request,'home.html')
+
+
 def home(request):
-    try:
-        username = request.COOKIES['name']
-        password = request.COOKIES['password']
-        print(username+"    "+password)
-        if(username!="" and password!=""):
-            print("Cookie found")
-            print(username+"    "+password)
-            if(authenticateUser(username,password)):
-                return HttpResponseRedirect('/getUserLogin')
-    except Exception as e:
-        print("No Cookie Found : ",e)
-    return render(request,'home.html')
+    return render(request, 'notebookUI.html',{'name':'Abhishek','file':'System Design','dir':['program1.c','program2.cpp']})
 
 
 def authenticateUser(email , pswd):

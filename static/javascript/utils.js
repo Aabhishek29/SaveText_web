@@ -1,6 +1,9 @@
 console.log("Javasript file connected");
 
 
+
+
+// To Create New File Use This Function
 const newFile = () => {
     var data = document.getElementById("textarea");
     if(data.value != "")
@@ -14,6 +17,8 @@ const newFile = () => {
 }
 
 
+
+// To Save New or Existing file use this function
 const saveFileData = () =>{
     
     var file_name = prompt("enter file name:");
@@ -36,6 +41,8 @@ const saveFileData = () =>{
     console.log("data Sucessfully send to server");
 }
 
+
+// Function used to Clear File
 const clearFileData = () => {
     var data = document.getElementById("textarea");
     if(data.value != "")

@@ -1,0 +1,43 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/notebookUI.css' %}?{% now 'U' %}">
+    <script src="https://kit.fontawesome.com/1deaef375e.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="navbar">
+        <header>{{ file }} - {{ name }} - SaveText</header>
+    </div>
+    <div class="menu">
+        <div>
+            <button class="menu-btn">File</button>
+            <button class="menu-btn">Edit</button>
+            <button class="menu-btn">Help</button>
+        </div>
+        <a class="logout-section" href="#">
+            <i style="color: #fff;" class="fa-solid fa-right-from-bracket"></i>
+            <label style="color: #fff;">Logout</label>
+        </a>
+    </div>
+    <div class="textarea">
+        <div class="textarea-left">
+            <header id="explorer">EXPLORER</header>
+            <ul>
+                {% for i in dir %}
+                    <div style="display: flex; margin:10px; cursor: pointer;">
+                        <i style="color: #ddd; margin: 2px;font-size: 18px;" class="fa-solid fa-file"></i>
+                        <li class="dir-items">{{ i }}</li>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="textarea-right">
+            <textarea placeholder="text..." class="input-textarea"></textarea>
+        </div>
+    </div>
+</body>
+</html>

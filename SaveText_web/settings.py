@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'SaveText_web.wsgi.application'
+# WSGI_APPLICATION = 'SaveText_web.wsgi.application'
 
 
 # Database
