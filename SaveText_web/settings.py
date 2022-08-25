@@ -136,12 +136,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # OTP setup Due to some reason Django default service not working so we use default smpt lib
 # to send mail
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = 'starkabhishek29@gmail.com'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = "xquzloczyeavblaw"
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST_USER = 'starkabhishek29@gmail.com'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_PASSWORD = "xquzloczyeavblaw"
 
 #   superUser Id : abhi2907singh@gmail.com
 #   superUser Password: 29072002
